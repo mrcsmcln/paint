@@ -1,0 +1,26 @@
+{
+    "name": "mrcsmcln/paint",
+    "keywords": ["wordpress", "theme"],
+    "authors": [
+        {
+            "name": "Marcus McLean"
+        }
+    ],
+    "require": {
+        "danielstjules/stringy": "^3.1",
+        "doctrine/inflector": "^1.2"
+    },
+    "autoload": {
+        "files": [
+            "src/Paint/helpers.php"
+        ],
+        "psr-4": {
+            "Paint\\": "src/Paint/"
+        }
+    },
+    "config": {
+        "sort-packages": true
+    },
+    "minimum-stability": "dev",
+    "prefer-stable": true
+}
