@@ -36,10 +36,11 @@ class PostType extends Hookable
         }
 
         $this->postType = $postType[0];
-        $this->name = $postType[1] ?? Inflector::pluralize((string) Stringy::create($this->postType)->delimit(' ')->toTitleCase());
-        $this->singularName = $postType[2] ?? Inflector::singularize($this->name);
-        $this->nameLowerCase = $postType[3] ?? (string) Stringy::create($this->name)->toLowerCase();
-        $this->singularNameLowerCase = $postType[4] ?? (string) Stringy::create($this->singularName)->toLowerCase();
+        $restBase = $postType[1] ?? str_replace('_' , '-', str_plural($this->postType));
+        $this->name = $postType[2] ?? Inflector::pluralize((string) Stringy::create($this->postType)->delimit(' ')->toTitleCase());
+        $this->singularName = $postType[3] ?? Inflector::singularize($this->name);
+        $this->nameLowerCase = $postType[4] ?? (string) Stringy::create($this->name)->toLowerCase();
+        $this->singularNameLowerCase = $postType[5] ?? (string) Stringy::create($this->singularName)->toLowerCase();
 
         $menuIcon = is_string($args[0] ?? null) ? array_shift($args) : null;
 
@@ -66,7 +67,7 @@ class PostType extends Hookable
                 'public' => true,
                 'show_in_rest' => true,
                 'menu_icon' => $menuIcon,
-                'rest_base' => Inflector::pluralize($this->postType),
+                'rest_base' => $restBase,
             ],
             $args[0] ?? []
         );

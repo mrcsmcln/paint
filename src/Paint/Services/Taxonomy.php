@@ -20,7 +20,7 @@ class Taxonomy extends Hookable
         $this->objectType = $objectType;
 
         $taxonomyTitleCase = title_case(str_replace('_', ' ', $this->taxonomy));
-        $restBase = $taxonomy[1] ?? str_plural($this->taxonomy);
+        $restBase = $taxonomy[1] ?? str_replace('_' , '-', str_plural($this->taxonomy));
         $name = $taxonomy[2] ?? str_plural($taxonomyTitleCase);
         $singularName = $taxonomy[3] ?? str_singular($taxonomyTitleCase);
         $nameLowerCase = $taxonomy[4] ?? mb_strtolower($name);
