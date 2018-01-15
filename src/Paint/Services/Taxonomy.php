@@ -49,6 +49,9 @@ class Taxonomy extends Hookable
                 ],
                 'show_in_rest' => true,
                 'rest_base' => $restBase,
+                'rewrite' => [
+                    'slug' => $restBase,
+                ],
             ],
             $args
         );

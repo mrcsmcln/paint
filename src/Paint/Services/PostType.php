@@ -68,6 +68,9 @@ class PostType extends Hookable
                 'show_in_rest' => true,
                 'menu_icon' => $menuIcon,
                 'rest_base' => $restBase,
+                'rewrite' => [
+                    'slug' => $restBase,
+                ],
             ],
             $args[0] ?? []
         );
