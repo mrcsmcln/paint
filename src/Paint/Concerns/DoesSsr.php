@@ -6,8 +6,12 @@ use Paint\Services\Ssr;
 
 trait DoesSsr
 {
-    protected function doSsr($entry): void
+    protected $ssrEntry;
+
+    protected $ssrVars = [];
+
+    protected function doSsr(): void
     {
-        new Ssr($entry);
+        new Ssr($this->ssrEntry, $this->ssrVars);
     }
 }

@@ -12,9 +12,13 @@ class Ssr extends Hookable
 
     protected $entry;
 
-    public function __construct(string $entry)
+    protected $vars;
+
+    public function __construct($entry, $vars)
     {
         $this->entry = $entry;
+
+        $this->vars = $vars;
 
         parent::__construct();
     }
@@ -26,12 +30,12 @@ class Ssr extends Hookable
                 $v8js = new V8Js();
 
                 $v8js->{'$_SERVER'} = $_SERVER;
-                // var_dump($_SERVER);
-                // die();
-                $v8js->client = new Client(['base_uri' => get_site_url()]);
 
-                // $v8js->setTimeLimit(3000);
-                // $v8js->executeString('const $_SERVER = '.json_encode($_SERVER).';');
+                foreach ($this->vars as $key => $value) {
+                    $v8js->$key = $value;
+                }
+
+                $v8js->client = new Client(['base_uri' => get_site_url()]);
                 $v8js->executeString(file_get_contents($this->entry));
 
                 break;

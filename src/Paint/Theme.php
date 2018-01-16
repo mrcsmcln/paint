@@ -55,10 +55,12 @@ abstract class Theme extends Hookable {
                 ->replace(site_url(), 'http://localhost:8080')
             : $this->distDirectoryUri.'/js'
         ;
+        $this->ssrEntry = $this->jsDirectory.'/server-bundle.js';
 
         $this->gatherStyles();
         $this->gatherScripts();
 
+        $this->doSsr();
         $this->addFeatures();
         $this->addImageSizes();
         $this->enqueueStyles();
@@ -66,7 +68,6 @@ abstract class Theme extends Hookable {
         $this->registerNavMenus();
         $this->registerPostTypes();
         $this->registerTaxonomies();
-        $this->doSsr($this->jsDirectory.'/server-bundle.js');
     }
 
     protected function gatherStyles(): void
