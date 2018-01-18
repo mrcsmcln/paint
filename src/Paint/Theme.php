@@ -68,6 +68,8 @@ abstract class Theme extends Hookable {
         $this->registerNavMenus();
         $this->registerPostTypes();
         $this->registerTaxonomies();
+
+        parent::__construct();
     }
 
     protected function gatherStyles(): void
