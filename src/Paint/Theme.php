@@ -72,7 +72,7 @@ abstract class Theme extends Hookable {
 
     protected function gatherStyles(): void
     {
-        if (WP_ENV === 'production') {
+        if (WP_ENV !== 'production') {
             return;
         }
 
