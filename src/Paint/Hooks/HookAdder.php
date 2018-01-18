@@ -49,6 +49,10 @@ class HookAdder
     {
         $data = ! is_array($data) ? [$data] : $data;
 
+        if (is_string($data[1] ?? null) && ! is_callable($data[1] ?? null)) {
+            $data[1] = [$this->hookable, $data[1]];
+        }
+
         if (! is_callable($data[1] ?? null)) {
             array_splice($data, 1, 0, [$this->getFunctionToAdd($data[0], $type)]);
         }
