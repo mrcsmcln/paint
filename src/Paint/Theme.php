@@ -50,11 +50,17 @@ abstract class Theme extends Hookable {
         $this->cssDirectory = $this->distDirectory.'/css';
         $this->cssDirectoryUri = $this->distDirectoryUri.'/css';
         $this->jsDirectory = $this->distDirectory.'/js';
-        $this->jsDirectoryUri = WP_ENV === 'development'
-            ? Stringy::create($this->distDirectoryUri.'/js')
-                ->replace(site_url(), 'http://localhost:8080')
-            : $this->distDirectoryUri.'/js'
-        ;
+        $this->jsDirectoryUri = str_replace(
+            site_url(),
+            WP_ENV === 'development' ? 'http://localhost:8080' : site_url(),
+            $this->distDirectoryUri.'/js'
+        );
+        $this->staticDirectory = $this->distDirectory.'/static';
+        $this->staticDirectoryUri = $this->distDirectoryUri.'/static';
+        $this->staticCssDirectory = $this->staticDirectory.'/css';
+        $this->staticCssDirectoryUri = $this->staticDirectoryUri.'/css';
+        $this->staticJsDirectory = $this->staticDirectory.'/js';
+        $this->staticJsDirectoryUri = $this->staticDirectoryUri.'/js';
         $this->ssrEntry = $this->jsDirectory.'/server-bundle.js';
 
         $this->gatherStyles();
@@ -93,17 +99,34 @@ abstract class Theme extends Hookable {
 
     protected function gatherScripts(): void
     {
-        foreach (array_filter(
-            scandir($this->jsDirectory),
-            [$this, 'filterJs']
-        ) as $filename) {
-            $this->scripts[] = [
-                Stringy::create($filename)->removeRight('.js'),
-                $this->jsDirectoryUri.'/'.$filename,
-                [],
-                $this->version,
-                true,
-            ];
+        if (is_dir($this->jsDirectory)) {
+            foreach (array_filter(
+                scandir($this->jsDirectory),
+                [$this, 'filterJs']
+            ) as $filename) {
+                $this->scripts[] = [
+                    Stringy::create($filename)->removeRight('.js'),
+                    $this->jsDirectoryUri.'/'.$filename,
+                    [],
+                    $this->version,
+                    true,
+                ];
+            }
+        }
+
+        if (is_dir($this->staticJsDirectory)) {
+            foreach (array_filter(
+                scandir($this->staticJsDirectory),
+                [$this, 'filterJs']
+            ) as $filename) {
+                $this->scripts[] = [
+                    Stringy::create($filename)->removeRight('.js'),
+                    $this->staticJsDirectoryUri.'/'.$filename,
+                    [],
+                    $this->version,
+                    true,
+                ];
+            }
         }
     }
 
