@@ -139,7 +139,11 @@ abstract class Theme extends Hookable {
 
     protected function filterJs($filename): bool
     {
-        return is_file($this->jsDirectory.'/'.$filename)
+        return
+            (
+                is_file($this->jsDirectory.'/'.$filename)
+                || is_file($this->staticJsDirectory.'/'.$filename)
+            )
             && Stringy::create($filename)->endsWith('.js')
             && $filename !== 'server-bundle.js'
         ;
