@@ -64,7 +64,11 @@ class HookAdder
     {
         return [
             $this->hookable,
-            (string) Stringy::create($tag.'_'.$type)->camelize(),
+            str_replace(
+                ' ',
+                '',
+                lcfirst(ucwords(str_replace(['_', '-', '/'], ' ', $tag.'_'.$type)))
+            ),
         ];
     }
 }

@@ -11,12 +11,7 @@ trait RegistersNavMenus
     protected function registerNavMenus(): void
     {
         foreach ($this->navMenus as $navMenu) {
-            new NavMenu(...$this->cleanNavMenu($navMenu));
+            new NavMenu(...array_wrap($navMenu));
         }
-    }
-
-    protected function cleanNavMenu($data): array
-    {
-        return ! is_array($data) ? [$data] : $data;
     }
 }

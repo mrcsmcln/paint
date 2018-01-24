@@ -11,12 +11,7 @@ trait EnqueuesScripts
     protected function enqueueScripts(): void
     {
         foreach ($this->scripts as $script) {
-            new script(...$this->cleanScript($script));
+            new Script(...array_wrap($script));
         }
-    }
-
-    protected function cleanScript($data): array
-    {
-        return ! is_array($data) ? [$data] : $data;
     }
 }
