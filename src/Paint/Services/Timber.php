@@ -40,7 +40,7 @@ class Timber extends Hookable
 
     public function timberTwigFilter(Twig_Environment $twig)
     {
-        new Twig_Function('image', function ($image, $attributes) {
+        $twig->addFunction(new Twig_Function('image', function ($image, $attributes) {
             if (!  (is_array($attributes) || is_string($attributes))) {
                 throw new TypeError;
             }
@@ -82,7 +82,7 @@ class Timber extends Hookable
             $html .= '>';
 
             return $html;
-        });
+        }));
 
         return $twig;
     }
