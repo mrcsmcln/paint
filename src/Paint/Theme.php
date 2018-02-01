@@ -70,7 +70,7 @@ abstract class Theme extends Hookable {
         $this->addImageSizes();
         $this->enqueueStyles();
         $this->enqueueScripts();
-        $this->addsOptionsPages();
+        $this->addOptionsPages();
         $this->initializeTimber();
         $this->registerNavMenus();
         $this->registerPostTypes();
