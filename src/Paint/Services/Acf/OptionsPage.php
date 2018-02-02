@@ -31,6 +31,8 @@ class OptionsPage extends Hookable
 
     public function adminMenuAction()
     {
-        $this->data = acf_add_options_page($this->args);
+        if (function_exists('acf_add_options_page')) {
+            $this->data = acf_add_options_page($this->args);
+        }
     }
 }
