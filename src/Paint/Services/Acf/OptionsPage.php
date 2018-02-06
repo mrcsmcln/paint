@@ -18,7 +18,7 @@ class OptionsPage extends Hookable
             $this->args['page_title'] = array_shift($args);
         }
 
-        if (is_string($args[0]) ?? null) {
+        if (is_string($args[0] ?? null)) {
             $this->args['parent_slug'] = array_shift($args);
         }
 
