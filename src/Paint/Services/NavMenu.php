@@ -25,7 +25,7 @@ class NavMenu extends Hookable
      */
     protected $description;
 
-    public function __construct(string $location, ?string $description = null)
+    public function __construct(string $location, string $description = null)
     {
         $this->location = $location;
         $this->description = $description ?? __(
@@ -35,7 +35,7 @@ class NavMenu extends Hookable
         parent::__construct();
     }
 
-    public function afterSetupThemeAction(): void
+    public function afterSetupThemeAction()
     {
         register_nav_menu($this->location, $this->description);
     }

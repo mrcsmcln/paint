@@ -15,37 +15,37 @@ class HookAdder
         $this->addHooks();
     }
 
-    public function addHooks(): void
+    public function addHooks()
     {
         $this->addActions();
         $this->addFilters();
     }
 
-    public function addActions(): void
+    public function addActions()
     {
         foreach ($this->hookable->actions as $action) {
             new Action(...$this->cleanAction($action));
         }
     }
 
-    public function addFilters(): void
+    public function addFilters()
     {
         foreach ($this->hookable->filters as $filter) {
             new Filter(...$this->cleanFilter($filter));
         }
     }
 
-    protected function cleanAction($data): array
+    protected function cleanAction($data)
     {
         return $this->cleanHook($data, 'action');
     }
 
-    protected function cleanFilter($data): array
+    protected function cleanFilter($data)
     {
         return $this->cleanHook($data, 'filter');
     }
 
-    protected function cleanHook($data, $type): array
+    protected function cleanHook($data, $type)
     {
         $data = ! is_array($data) ? [$data] : $data;
 
@@ -60,7 +60,7 @@ class HookAdder
         return $data;
     }
 
-    protected function getFunctionToAdd($tag, $type): callable
+    protected function getFunctionToAdd($tag, $type)
     {
         return [
             $this->hookable,

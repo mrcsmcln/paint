@@ -96,7 +96,7 @@ class PostType extends Hookable
         register_post_type($this->postType, $this->args);
     }
 
-    public function postUpdatedMessagesFilter(?array $messages)
+    public function postUpdatedMessagesFilter(array $messages = null)
     {
         global $post_type_object, $post;
 

@@ -8,7 +8,7 @@ trait RegistersTaxonomies
 {
     protected $taxonomies = [];
 
-    protected function registerTaxonomies(): void
+    protected function registerTaxonomies()
     {
         foreach ($this->taxonomies as $taxonomy) {
             new Taxonomy(...$taxonomy);

@@ -10,7 +10,7 @@ trait DoesSsr
 
     protected $ssrVars = [];
 
-    protected function doSsr(): void
+    protected function doSsr()
     {
         new Ssr($this->ssrEntry, $this->ssrVars);
     }

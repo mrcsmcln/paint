@@ -8,7 +8,7 @@ trait RegistersNavMenus
 {
     protected $navMenus = [];
 
-    protected function registerNavMenus(): void
+    protected function registerNavMenus()
     {
         foreach ($this->navMenus as $navMenu) {
             new NavMenu(...array_wrap($navMenu));

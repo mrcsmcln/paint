@@ -13,7 +13,7 @@ abstract class Hookable
         $this->addHooks();
     }
 
-    protected function addHooks(): void
+    protected function addHooks()
     {
         new HookAdder($this);
     }

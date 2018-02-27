@@ -6,13 +6,13 @@ use Stringy\Stringy;
 
 trait AddsHooks
 {
-    protected function addHooks(): void
+    protected function addHooks()
     {
         $this->addActions();
         $this->addFilters();
     }
 
-    protected function addActions(): void
+    protected function addActions()
     {
         $actions = ! is_array($this->actions) ? [$this->actions] : $this->actions;
 
@@ -21,7 +21,8 @@ trait AddsHooks
         }
     }
 
-    protected function addFilters(): void{
+    protected function addFilters()
+    {
         $filters = ! is_array($this->filters) ? [$this->filters] : $this->filters;
 
         foreach ($filters as $filter) {
@@ -29,17 +30,17 @@ trait AddsHooks
         }
     }
 
-    protected function parseAction($args): array
+    protected function parseAction($args)
     {
         return $this->parseHook('action', $args);
     }
 
-    protected function parseFilter($args): array
+    protected function parseFilter($args)
     {
         return $this->parseHook('filter', $args);
     }
 
-    protected function parseHook(string $type, $args): array
+    protected function parseHook(string $type, $args)
     {
         $args = ! is_array($args) ? [$args] : $args;
 
@@ -50,7 +51,7 @@ trait AddsHooks
         return $args;
     }
 
-    protected function getFunctionToAdd($tag, $type): callable
+    protected function getFunctionToAdd($tag, $type)
     {
         return [
             $this,

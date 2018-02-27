@@ -8,14 +8,14 @@ trait RegistersPostTypes
 {
     protected $postTypes = [];
 
-    protected function registerPostTypes(): void
+    protected function registerPostTypes()
     {
         foreach ($this->postTypes as $postType) {
             new PostType(...$this->cleanPostType($postType));
         }
     }
 
-    protected function cleanPostType($data): array
+    protected function cleanPostType($data)
     {
         return ! is_array($data) ? [$data] : $data;
     }

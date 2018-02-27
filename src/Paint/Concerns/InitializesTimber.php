@@ -6,7 +6,7 @@ use Paint\Services\Timber;
 
 trait InitializesTimber
 {
-    protected function initializeTimber(): void
+    protected function initializeTimber()
     {
         new Timber;
     }

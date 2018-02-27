@@ -42,7 +42,7 @@ class ImageSize extends Hookable
     public function __construct(
         string $name,
         int $width,
-        ?int $height = null,
+        int $height = null,
         $crop = false
     ) {
         $this->name = $name;

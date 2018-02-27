@@ -8,7 +8,7 @@ trait EnqueuesScripts
 {
     protected $scripts = [];
 
-    protected function enqueueScripts(): void
+    protected function enqueueScripts()
     {
         foreach ($this->scripts as $script) {
             new Script(...array_wrap($script));

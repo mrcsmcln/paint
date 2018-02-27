@@ -4,7 +4,7 @@ namespace Paint\Hooks;
 
 class Filter extends Hook
 {
-    protected function add(): void
+    protected function add()
     {
         add_filter(
             $this->tag,

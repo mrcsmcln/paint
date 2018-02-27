@@ -8,14 +8,14 @@ trait AddsOptionsPages
 {
     protected $optionsPages = [];
 
-    protected function addOptionsPages(): void
+    protected function addOptionsPages()
     {
         foreach ($this->optionsPages as $optionsPage) {
             new OptionsPage(...$this->cleanOptionsPage($optionsPage));
         }
     }
 
-    protected function cleanOptionsPage($data): array
+    protected function cleanOptionsPage($data)
     {
         return ! is_array($data) ? [$data] : $data;
     }
